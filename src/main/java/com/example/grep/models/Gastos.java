@@ -1,6 +1,6 @@
 package com.example.grep.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.lang.annotation.Target;
 
 @Entity

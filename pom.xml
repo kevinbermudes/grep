@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>3.4.0</version>
 		<relativePath/>
 		<!--  lookup parent from repository  -->
 	</parent>
@@ -14,6 +14,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+		<property name="dialect">org.hibernate.community.dialect.SQLiteDialect</property>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -43,10 +44,17 @@
 			<version>3.25.2</version>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>javax.xml.bind</groupId>-->
+<!--			<artifactId>jaxb-api</artifactId>-->
+<!--			<version>2.3.0</version>-->
+<!--		</dependency>-->
+
+
 		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.0</version>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-community-dialects</artifactId>
+			<version>6.2.7.Final</version>
 		</dependency>
 
 	</dependencies>
