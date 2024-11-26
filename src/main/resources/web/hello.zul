@@ -1,26 +1,21 @@
-<!--<zk>-->
-<!--    <window title="Usuarios" border="normal"-->
-<!--            viewModel="@id('vm') @init('com.example.grep.controllers.UsuarioViewModel')">-->
-<!--        <listbox model="@load(vm.usuarios)" width="100%" height="400px">-->
-<!--            <listhead>-->
-<!--                <listheader label="ID" />-->
-<!--                <listheader label="Nombre" />-->
-<!--                <listheader label="Contraseña" />-->
-<!--            </listhead>-->
-<!--            <template name="model">-->
-<!--                <listitem>-->
-<!--                    <listcell label="@load(each.idUsuario)" />-->
-<!--                    <listcell label="@load(each.nombreUsuario)" />-->
-<!--                    <listcell label="@load(each.password)" />-->
-<!--                </listitem>-->
-<!--            </template>-->
-<!--        </listbox>-->
-<!--    </window>-->
-<!--</zk>-->
-
-
-<zk>
-    <window title="Hello ZK - Spring Boot!" border="normal">
-        You are using ZK version <label value="${session.webApp.version}"/>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Usuarios" border="normal" apply="com.example.grep.controllers.UsuarioViewModel">
+        <listbox id="usuarios" width="100%" rows="8" emptyMessage="No users found">
+            <listhead>
+                <listheader label="ID" />
+                <listheader label="Nombre" />
+                <listheader label="Contraseña" />
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="${each.idUsuario}" />
+                    <listcell label="${each.nombreUsuario}" />
+                    <listcell label="${each.password}" />
+                </listitem>
+            </template>
+        </listbox>
+        <textbox id="nombreUsuario" placeholder="Nuevo usuario" />
+        <button label="Agregar Usuario" onClick='${usuarioViewModel.agregarUsuario(nombreUsuario.value)}' />
     </window>
 </zk>
+
