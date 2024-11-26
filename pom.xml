@@ -57,6 +57,31 @@
 			<version>6.2.7.Final</version>
 		</dependency>
 
+
+		<!--		ZK 	-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.zkoss.zk/zkspring-core &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.zkoss.zk</groupId>-->
+<!--			<artifactId>zkspring-core</artifactId>-->
+<!--			<version>3.2.0</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.zkoss.zk/zkplus &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.zkoss.zk</groupId>-->
+<!--			<artifactId>zkplus</artifactId>-->
+<!--			<version>6.0.0</version>-->
+<!--		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.zkoss.zkspringboot/zkspringboot-starter -->
+		<dependency>
+			<groupId>org.zkoss.zkspringboot</groupId>
+			<artifactId>zkspringboot-starter</artifactId>
+			<version>3.2.1</version>
+			<type>pom</type>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -80,6 +105,11 @@
 		<repository>
 			<id>spring-releases</id>
 			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+
+		<repository>
+			<id>ZK CE</id>
+			<url>https://mavensync.zkoss.org/maven2</url>
 		</repository>
 	</repositories>
 </project>

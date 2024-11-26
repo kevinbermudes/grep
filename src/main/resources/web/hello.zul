@@ -1,23 +1,26 @@
+<!--<zk>-->
+<!--    <window title="Usuarios" border="normal"-->
+<!--            viewModel="@id('vm') @init('com.example.grep.controllers.UsuarioViewModel')">-->
+<!--        <listbox model="@load(vm.usuarios)" width="100%" height="400px">-->
+<!--            <listhead>-->
+<!--                <listheader label="ID" />-->
+<!--                <listheader label="Nombre" />-->
+<!--                <listheader label="Contraseña" />-->
+<!--            </listhead>-->
+<!--            <template name="model">-->
+<!--                <listitem>-->
+<!--                    <listcell label="@load(each.idUsuario)" />-->
+<!--                    <listcell label="@load(each.nombreUsuario)" />-->
+<!--                    <listcell label="@load(each.password)" />-->
+<!--                </listitem>-->
+<!--            </template>-->
+<!--        </listbox>-->
+<!--    </window>-->
+<!--</zk>-->
+
+
 <zk>
-    <window title="Usuarios" border="normal"
-            viewModel="@id('vm') @init('com.example.grep.controllers.UsuarioViewModel')">
-        <listbox model="@load(vm.usuarios)" width="100%" height="400px">
-            <listhead>
-                <listheader label="ID" />
-                <listheader label="Nombre" />
-                <listheader label="Contraseña" />
-            </listhead>
-            <template name="model">
-                <listitem>
-                    <listcell label="@load(each.idUsuario)" />
-                    <listcell label="@load(each.nombreUsuario)" />
-                    <listcell label="@load(each.password)" />
-                </listitem>
-            </template>
-        </listbox>
-
-
+    <window title="Hello ZK - Spring Boot!" border="normal">
+        You are using ZK version <label value="${session.webApp.version}"/>
     </window>
 </zk>
-
-
