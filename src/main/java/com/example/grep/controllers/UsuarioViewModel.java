@@ -3,6 +3,13 @@ package com.example.grep.controllers;
 
 import com.example.grep.models.Usuarios;
 import com.example.grep.services.UsuariosService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.zkoss.bind.annotation.Command;
+import org.zkoss.bind.annotation.Init;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -12,33 +19,28 @@ import org.zkoss.zul.Listbox;
 
 import java.util.List;
 
-public class UsuarioViewModel extends SelectorComposer<Component> {
+public class UsuarioViewModel {
 
-    @WireVariable
-    private UsuariosService usuarioService; // Inyección del servicio
+    private UsuariosService usuarioService;
 
-    @Wire
-    private Listbox usuarios; // Vincula el listbox desde el ZUL
+    private ListModelList<Usuarios> usuariosModel;
 
-    private ListModelList<Usuarios> usuariosModel; // Modelo para el listbox
+    @Init
+    public void init() {
+        // Obtén el ApplicationContext manualmente
+        ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(
+                org.zkoss.zk.ui.Executions.getCurrent().getDesktop().getWebApp().getServletContext()
+        );
+        usuarioService = context.getBean(UsuariosService.class);
 
-    @Override
-    public void doAfterCompose(Component comp) throws Exception {
-        super.doAfterCompose(comp);
         // Inicializa la lista de usuarios
         List<Usuarios> usuariosList = usuarioService.getAllUsuarios();
         usuariosModel = new ListModelList<>(usuariosList);
-        usuarios.setModel(usuariosModel);
     }
 
-    public void agregarUsuario(String nombre) {
-        Usuarios usuario = new Usuarios();
-        usuario.setNombreUsuario(nombre);
-        usuarioService.saveUsuario(usuario);
-
-        // Actualiza la lista después de agregar
-        List<Usuarios> updatedList = usuarioService.getAllUsuarios();
-        usuariosModel.clear();
-        usuariosModel.addAll(updatedList);
+    public ListModelList<Usuarios> getUsuariosModel() {
+        return usuariosModel;
     }
+
+
 }
