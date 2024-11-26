@@ -21,6 +21,7 @@ import java.util.List;
 
 public class UsuarioViewModel {
 
+    @WireVariable
     private UsuariosService usuarioService;
 
     private ListModelList<Usuarios> usuariosModel;
