@@ -3,13 +3,10 @@ package com.example.grep.controllers;
 
 import com.example.grep.models.Usuarios;
 import com.example.grep.services.UsuariosService;
-import org.zkoss.zk.ui.select.annotation.WireVariable;
 
 import java.util.List;
 public class UsuarioViewModel {
 
-//    @WireVariable
-    @WireVariable
     private UsuariosService usuarioService;
     private List<Usuarios> usuarios;
 

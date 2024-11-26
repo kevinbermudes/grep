@@ -1,10 +1,7 @@
 package com.example.grep.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.*;
+import javax.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
