@@ -14,6 +14,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 
@@ -25,6 +26,9 @@ public class UsuarioViewModel {
     private UsuariosService usuarioService;
 
     private ListModelList<Usuarios> usuariosModel;
+    private Usuarios nuevoUsuario = new Usuarios(); // Objeto para el nuevo usuario
+
+
 
     @Init
     public void init() {
@@ -42,6 +46,41 @@ public class UsuarioViewModel {
     public ListModelList<Usuarios> getUsuariosModel() {
         return usuariosModel;
     }
+    public Usuarios getNuevoUsuario() {
+        return nuevoUsuario;
+    }
 
+    public void setNuevoUsuario(Usuarios nuevoUsuario) {
+        this.nuevoUsuario = nuevoUsuario;
+    }
+
+    @Command
+    @NotifyChange({"usuariosModel", "nuevoUsuario"})
+    public void guardarUsuario() {
+        if (usuarioService == null) {
+            // Obtén el ApplicationContext manualmente si aún no está inicializado
+            ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(
+                    org.zkoss.zk.ui.Executions.getCurrent().getDesktop().getWebApp().getServletContext()
+            );
+            usuarioService = context.getBean(UsuariosService.class);
+        }
+
+        if (nuevoUsuario != null) {
+            nuevoUsuario.setNombreUsuario(nuevoUsuario.getNombreUsuario().replaceAll("\\s+", ""));
+            nuevoUsuario.setIdUsuario(nuevoUsuario.getIdUsuario().trim());
+            nuevoUsuario.setPassword(nuevoUsuario.getPassword().trim());
+            // Guardar el usuario en la base de datos
+            usuarioService.saveUsuario(nuevoUsuario);
+
+            // Actualizar la lista de usuarios
+            usuariosModel.add(nuevoUsuario);
+
+            // Limpiar el formulario
+            nuevoUsuario = new Usuarios();
+
+            // Mostrar una notificación
+            Clients.showNotification("Usuario creado correctamente.");
+        }
+    }
 
 }

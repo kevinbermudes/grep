@@ -16,7 +16,7 @@ public class UsuariosService  {
         return usuariosRepository.findAll();
     }
 
-    public Usuarios getUsuarioById(Integer id) {
+    public Usuarios getUsuarioById(String id) {
         return usuariosRepository.findById(id).orElse(null);
     }
 
@@ -24,7 +24,7 @@ public class UsuariosService  {
         return usuariosRepository.save(usuario);
     }
 
-    public void deleteUsuario(Integer id) {
+    public void deleteUsuario(String id) {
         usuariosRepository.deleteById(id);
     }
 

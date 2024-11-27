@@ -20,17 +20,17 @@ public class UsuariosController {
     }
 
     @GetMapping("/{id}")
-    public Usuarios getUsuarioById(@PathVariable Integer id) {
+    public Usuarios getUsuarioById(@PathVariable String id) {
         return usuariosService.getUsuarioById(id);
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Usuarios saveUsuario(@RequestBody Usuarios usuario) {
         return usuariosService.saveUsuario(usuario);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUsuario(@PathVariable Integer id) {
+    public void deleteUsuario(@PathVariable String id) {
         usuariosService.deleteUsuario(id);
     }
 }

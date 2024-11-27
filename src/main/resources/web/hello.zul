@@ -1,20 +1,42 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Usuarios" border="normal" viewModel="@id('vm') @init('com.example.grep.controllers.UsuarioViewModel')">
-        <listbox id="usuarios" width="100%" rows="8" emptyMessage="No hay usuarios crack" model="@load(vm.usuariosModel)">
-            <listhead>
-                <listheader label="ID" />
-                <listheader label="Nombre" />
-                <listheader label="Contraseña" />
-            </listhead>
-            <template name="model">
-                <listitem>
-                    <listcell label="@load(each.idUsuario)" />
-                    <listcell label="@load(each.nombreUsuario)" />
-                    <listcell label="@load(each.password)" />
-                </listitem>
-            </template>
-        </listbox>
+        <vlayout spacing="10px">
+            <!-- Tabla de usuarios -->
+            <listbox id="usuarios" width="100%" rows="8" emptyMessage="No hay usuarios disponibles" model="@load(vm.usuariosModel)">
+                <listhead>
+                    <listheader label="ID" />
+                    <listheader label="Nombre" />
+                    <listheader label="Contraseña" />
+                </listhead>
+                <template name="model">
+                    <listitem>
+                        <listcell label="@load(each.idUsuario)" />
+                        <listcell label="@load(each.nombreUsuario)" />
+                        <listcell label="@load(each.password)" />
+                    </listitem>
+                </template>
+            </listbox>
 
+            <!-- Formulario para crear un nuevo usuario -->
+            <grid>
+                <rows>
+                    <row>
+                        <label value="ID:" />
+                        <textbox value="@bind(vm.nuevoUsuario.idUsuario)" width="100%" placeholder="Ejemplo: 00003" />
+                    </row>
+                    <row>
+                        <label value="Nombre:" />
+                        <textbox value="@bind(vm.nuevoUsuario.nombreUsuario)" width="100%" placeholder="Ingrese el nombre del usuario" />
+                    </row>
+                    <row>
+                        <label value="Contraseña:" />
+                        <textbox type="password" value="@bind(vm.nuevoUsuario.password)" width="100%" placeholder="Ingrese la contraseña" />
+                    </row>
+                </rows>
+            </grid>
+
+            <!-- Botón para guardar el usuario -->
+            <button label="Guardar Usuario" onClick="@command('guardarUsuario')" />
+        </vlayout>
     </window>
 </zk>
-
