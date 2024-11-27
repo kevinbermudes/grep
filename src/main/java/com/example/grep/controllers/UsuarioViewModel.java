@@ -3,10 +3,15 @@ package com.example.grep.controllers;
 
 import com.example.grep.models.Usuarios;
 import com.example.grep.services.UsuariosService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.servlet.ModelAndView;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
@@ -19,28 +24,39 @@ import org.zkoss.zul.Listbox;
 
 import java.util.List;
 
+@Controller
 public class UsuarioViewModel {
 
-    @WireVariable
+//    @WireVariable
+    @Autowired
     private UsuariosService usuarioService;
 
-    private ListModelList<Usuarios> usuariosModel;
+//    private ListModelList<Usuarios> usuariosModel;
 
-    @Init
-    public void init() {
-        // Obtén el ApplicationContext manualmente
-        ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(
-                org.zkoss.zk.ui.Executions.getCurrent().getDesktop().getWebApp().getServletContext()
-        );
-        usuarioService = context.getBean(UsuariosService.class);
+//    @Init
+//    public void init() {
+//        // Obtén el ApplicationContext manualmente
+//        ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(
+//                org.zkoss.zk.ui.Executions.getCurrent().getDesktop().getWebApp().getServletContext()
+//        );
+//        usuarioService = context.getBean(UsuariosService.class);
+//
+//        // Inicializa la lista de usuarios
+//        List<Usuarios> usuariosList = usuarioService.getAllUsuarios();
+//        usuariosModel = new ListModelList<>(usuariosList);
+//    }
 
-        // Inicializa la lista de usuarios
-        List<Usuarios> usuariosList = usuarioService.getAllUsuarios();
-        usuariosModel = new ListModelList<>(usuariosList);
-    }
 
-    public ListModelList<Usuarios> getUsuariosModel() {
-        return usuariosModel;
+//    public ListModelList<Usuarios> getUsuariosModel() {
+//        return usuariosModel;
+//    }
+
+    @GetMapping("/usuarios")
+    public ModelAndView listarUsuarios() {
+        List<Usuarios> usuarios = usuarioService.getAllUsuarios();
+        ModelAndView modelAndView = new ModelAndView("usuarios"); // Nombre del archivo ZUL
+        modelAndView.addObject("usuariosList", new ListModelList<>(usuarios)); // Transformar la lista
+        return modelAndView ;
     }
 
 
