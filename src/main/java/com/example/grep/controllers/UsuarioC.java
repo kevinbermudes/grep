@@ -6,21 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.zkoss.bind.annotation.Command;
 import org.zkoss.zk.ui.Component;
+
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
+import org.zkoss.zk.ui.event.Event;
 import java.util.List;
 
 @Controller
 public class UsuarioC  extends SelectorComposer<Component> {
 
-    @WireVariable
+    @Autowired
     private UsuariosService usuarioService;
 
     @Wire
@@ -32,6 +35,8 @@ public class UsuarioC  extends SelectorComposer<Component> {
     private Textbox nombreUsuario;
     @Wire
     private Textbox password;
+    @Wire
+    private Button btn;
 
     // Endpoint para listar usuarios
     @GetMapping("/usuarios")
@@ -43,10 +48,11 @@ public class UsuarioC  extends SelectorComposer<Component> {
     }
 
 
+
+
     @Listen("onClick = #btnCrear")
-    @PostMapping("/usuarios")
-    public void guardar(){
-        String idUsr= idUsuario.getValue();
+    public void guardar(Event event){
+         String idUsr= idUsuario.getValue();
         String nombreUsr= nombreUsuario.getValue();
         String passwordUsr= password.getValue();
 
@@ -58,10 +64,10 @@ public class UsuarioC  extends SelectorComposer<Component> {
         usuarioService.saveUsuario(nuevoUsr);
 
         usuarios.add(nuevoUsr);
-
+        usuarios = new ListModelList<>(usuarios);
 
         // Redirigir a la lista de usuarios
-//        return "redirect:/usuarios";
+        //return "redirect:/usuarios";
     }
 
 

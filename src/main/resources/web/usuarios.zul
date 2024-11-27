@@ -1,5 +1,5 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Usuarios" border="normal" apply=" com.example.grep.controllers.UsuarioC">
+    <window title="Usuarios" border="normal" apply="${UsuarioC}">
         <!-- Lista de usuarios -->
         <listbox id="usuarios" width="100%" rows="7" emptyMessage="No hay usuarios disponibles" model="${usuariosList}">
             <listhead>
@@ -35,7 +35,7 @@
                     </row>
                 </rows>
             </grid>
-            <button id="btnCrear" label="Guardar Usuario" onClick="@command('crearUsuario')" />
+            <button id="btnCrear" label="Guardar Usuario"/>
         </vlayout>
 
 
