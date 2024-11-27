@@ -1,6 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Usuarios" border="normal">
-        <listbox id="usuarios" width="100%" rows="8" emptyMessage="No hay usuarios crack" model="${usuariosList}">
+    <window title="Usuarios" border="normal" apply=" com.example.grep.controllers.UsuarioC">
+        <!-- Lista de usuarios -->
+        <listbox id="usuarios" width="100%" rows="7" emptyMessage="No hay usuarios disponibles" model="${usuariosList}">
             <listhead>
                 <listheader label="ID" />
                 <listheader label="Nombre" />
@@ -14,6 +15,30 @@
                 </listitem>
             </template>
         </listbox>
+
+        <!-- Formulario para crear un nuevo usuario -->
+        <vlayout spacing="10px" style="margin-top: 20px;">
+            <label value="Crear nuevo usuario" style="font-weight: bold;" />
+            <grid>
+                <rows>
+                    <row>
+                        <label value="ID Usuario:" />
+                        <textbox id="idUsuario" />
+                    </row>
+                    <row>
+                        <label value="Nombre:" />
+                        <textbox id="nombreUsuario" />
+                    </row>
+                    <row>
+                        <label value="Contraseña:" />
+                        <textbox type="password" id="password" />
+                    </row>
+                </rows>
+            </grid>
+            <button id="btnCrear" label="Guardar Usuario" onClick="@command('crearUsuario')" />
+        </vlayout>
+
+
+
     </window>
 </zk>
-
