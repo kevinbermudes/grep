@@ -6,12 +6,14 @@ import com.example.grep.services.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
@@ -20,10 +22,11 @@ import org.zkoss.zul.Window;
 
 import java.util.List;
 
-@Controller
+//@Controller
 public class UsuarioC  extends SelectorComposer<Window> {
 
-    @Autowired
+//    @Autowired
+    @WireVariable
     private UsuariosService usuarioService;
 
     @Wire

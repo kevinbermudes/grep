@@ -15,19 +15,13 @@
 	<properties>
 		<java.version>17</java.version>
 		<property name="dialect">org.hibernate.community.dialect.SQLiteDialect</property>
-		<spring.boot.version>3.0.0</spring.boot.version>
+		<spring.boot.version>3.4.0</spring.boot.version>
 		<zk.version>10.0.0-jakarta</zk.version>
 		<zkspring.version>6.0.0</zkspring.version>
 	</properties>
 	<dependencies>
 
 		<!--		SpringBoot	-->
-		<!-- Spring Boot Starter -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-			<version>${spring.boot.version}</version>
-		</dependency>
 
 		<!-- Spring Data JPA -->
 		<dependency>
