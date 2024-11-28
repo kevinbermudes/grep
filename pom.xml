@@ -16,7 +16,7 @@
 		<java.version>17</java.version>
 		<property name="dialect">org.hibernate.community.dialect.SQLiteDialect</property>
 		<spring.boot.version>3.0.0</spring.boot.version>
-		<zk.version>10.0.0</zk.version>
+		<zk.version>10.0.0-jakarta</zk.version>
 		<zkspring.version>6.0.0</zkspring.version>
 	</properties>
 	<dependencies>
@@ -67,22 +67,17 @@
 
 
 		<!-- ZK Dependencies -->
-<!--		<dependency>-->
-<!--			<groupId>org.zkoss.zk</groupId>-->
-<!--			<artifactId>zkplus</artifactId>-->
-<!--			<version>${zk.version}</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zkplus</artifactId>
+			<version>${zk.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zkspring-core</artifactId>
 			<version>${zkspring.version}</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.zkoss.zk</groupId>-->
-<!--			<artifactId>zkspring-security</artifactId>-->
-<!--			<version>${zkspring.version}</version>-->
-<!--		</dependency>-->
 
 <!--		 ZK Spring Boot Dependencies -->
 		<dependency>
