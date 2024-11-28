@@ -20,20 +20,7 @@
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Usuarios" border="normal">
-        <listbox id="usuarios" width="100%" rows="8" emptyMessage="No hay usuarios crack" model="${usuariosList}">
-            <listhead>
-                <listheader label="ID" />
-                <listheader label="Nombre" />
-                <listheader label="Contraseña" />
-            </listhead>
-            <template name="model">
-                <listitem>
-                    <listcell label="${each.idUsuario}" />
-                    <listcell label="${each.nombreUsuario}" />
-                    <listcell label="${each.password}" />
-                </listitem>
-            </template>
-        </listbox>
+      <label value="Hola Mundo" />
     </window>
 </zk>
 

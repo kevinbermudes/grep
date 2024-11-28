@@ -2,26 +2,26 @@ package com.example.grep.controllers;
 
 import com.example.grep.models.Usuarios;
 import com.example.grep.services.UsuariosService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.zkoss.zk.ui.Component;
-
+import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.ListModelList;
-import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
 
-import org.zkoss.zk.ui.event.Event;
+
 import java.util.List;
 
 @Controller
-public class UsuarioC  extends SelectorComposer<Component> {
+public class UsuarioC  extends SelectorComposer<Window> {
 
     @Autowired
     private UsuariosService usuarioService;
@@ -52,7 +52,12 @@ public class UsuarioC  extends SelectorComposer<Component> {
 
     @Listen("onClick = #btnCrear")
     public void guardar(Event event){
-         String idUsr= idUsuario.getValue();
+        System.out.println("hola kev");
+        if (usuarioService == null) {
+            throw new IllegalStateException("usuarioService no fue inyectado correctamente.");
+        }
+
+        String idUsr= idUsuario.getValue();
         String nombreUsr= nombreUsuario.getValue();
         String passwordUsr= password.getValue();
 
